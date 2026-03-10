@@ -48,7 +48,7 @@ namespace SistemaAcademico.Controllers
         // GET: Disciplinas/Create
         public IActionResult Create()
         {
-            ViewData["CursoId"] = new SelectList(_context.Cursos, "CursoId", "CursoId");
+            ViewData["CursoId"] = new SelectList(_context.Cursos, "CursoId", "Nome");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace SistemaAcademico.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DisciplinaId,Nome,Semestre,CursoId")] Disciplina disciplina)
+        public async Task<IActionResult> Create([Bind("Nome,Semestre,CursoId")] Disciplina disciplina)
         {
             if (ModelState.IsValid)
             {
