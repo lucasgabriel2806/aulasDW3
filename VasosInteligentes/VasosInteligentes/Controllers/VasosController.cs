@@ -1,0 +1,226 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+using System.Threading.Tasks;
+using VasosInteligentes.data;
+using VasosInteligentes.Data;
+using VasosInteligentes.Models;
+
+namespace VasosInteligentes.Controllers
+{
+    public class VasosController : Controller
+    {
+        private readonly ContextMongoDb _context;
+
+        public VasosController(ContextMongoDb context)
+        {
+            _context = context;
+        }
+
+        // GET: Vasos
+        public async Task<IActionResult> Index()
+        {
+            var pipeline = new BsonDocument[]
+            {
+                // criar campos temporários será usado na conversão de Object para string
+                new BsonDocument("$addFields", new BsonDocument
+                {
+                    { "PlantaObj", new BsonDocument("$toObjectId", "$PlantaId") }
+                }),
+                // faz o join usando o campo convertido
+                new BsonDocument("$lookup", new BsonDocument
+                {
+                    { "from", "Planta" },
+                    { "localField", "PlantaIdObj" },
+                    { "foreignField", "_id" },
+                    { "as", "PlantaRelacionada" }
+                }),
+                // remover campos extras para não "quebrar" o C#
+                new BsonDocument("$project", new BsonDocument
+                {
+                    { "PlantaIdObj", 0 }
+                })
+            };
+            var result = await _context.Vaso.Aggregate<Vaso>(pipeline).ToListAsync();
+            return View(result);
+        }
+        
+        // GET: Vasos/Details/5
+        public async Task<IActionResult> Details(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var pipeline = new BsonDocument[]
+            {
+                // Buscar apenas o vaso cujo id tem por parâmetro
+                new BsonDocument("$match", new BsonDocument("_id", new BsonObjectId(new ObjectId("id")))),               
+                // criar campos temporários será usado na conversão de Object para string
+                new BsonDocument("$addFields", new BsonDocument
+                {
+                    { "PlantaObj", new BsonDocument("$toObjectId", "$PlantaId") }
+                }),
+                // faz o join usando o campo convertido
+                new BsonDocument("$lookup", new BsonDocument
+                {
+                    { "from", "Planta" },
+                    { "localField", "PlantaIdObj" },
+                    { "foreignField", "_id" },
+                    { "as", "PlantaRelacionada" }
+                }),
+                // remover campos extras para não "quebrar" o C#
+                new BsonDocument("$project", new BsonDocument
+                {
+                    { "PlantaIdObj", 0 }
+                })
+            };
+            var vaso = await _context.Vaso.Aggregate<Vaso>(pipeline).FirstOrDefaultAsync();
+            if (vaso == null)
+            {
+                return NotFound();
+            }
+            return View(vaso);
+        }      
+        
+        // GET: Vasos/Create
+        public async Task<IActionResult> Create()
+        {
+            var plantas = await _context.Planta.Find(_ => true).ToListAsync();
+            ViewBag.PlantaId = new SelectList(plantas, "Id", "Nome");
+            return View();
+        }
+        
+        // POST: Vasos/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Nome,PlantaId,Localizacao")] Vaso vaso)
+        {
+            if (ModelState.IsValid)
+            {
+                await _context.Vaso.InsertOneAsync(vaso);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(vaso);
+        }
+        
+        // GET: Vasos/Edit/5
+        public async Task<IActionResult> Edit(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var vaso = await _context.Vaso.Find(m => m.Id == id).FirstOrDefaultAsync();
+            if (vaso == null)
+            {
+                return NotFound();
+            }
+            var plantas = await _context.Planta.Find(_ => true).ToListAsync();
+            ViewBag.PlantaId = new SelectList(plantas, "Id", "Nome");
+            return View(vaso);
+        }
+
+        // POST: Vasos/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Nome,PlantaId,Localizacao")] Vaso vaso)
+        {
+            if (id != vaso.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _context.Vaso.ReplaceOneAsync(p => p.Id == id, vaso);                    
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!await VasoExists(vaso.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(vaso);
+        }
+
+        // GET: Vasos/Delete/5
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var pipeline = new BsonDocument[]
+            {
+                // Buscar apenas o vaso cujo id tem por parâmetro
+                new BsonDocument("$match", new BsonDocument("_id", new BsonObjectId(new ObjectId("id")))),               
+                // criar campos temporários será usado na conversão de Object para string
+                new BsonDocument("$addFields", new BsonDocument
+                {
+                    { "PlantaObj", new BsonDocument("$toObjectId", "$PlantaId") }
+                }),
+                // faz o join usando o campo convertido
+                new BsonDocument("$lookup", new BsonDocument
+                {
+                    { "from", "Planta" },
+                    { "localField", "PlantaIdObj" },
+                    { "foreignField", "_id" },
+                    { "as", "PlantaRelacionada" }
+                }),
+                // remover campos extras para não "quebrar" o C#
+                new BsonDocument("$project", new BsonDocument
+                {
+                    { "PlantaIdObj", 0 }
+                })
+            };
+            var vaso = await _context.Vaso.Aggregate<Vaso>(pipeline).FirstOrDefaultAsync();
+            if (vaso == null)
+            {
+                return NotFound();
+            }
+            return View(vaso);
+        }
+
+        // POST: Vasos/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {            
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            await _context.Vaso.DeleteOneAsync(m => m.Id == id);
+            return RedirectToAction(nameof(Index));
+        }
+
+        private async Task<bool> VasoExists(string id)
+        {
+            return await _context.Vaso.Find(e => e.Id == id).AnyAsync();
+        }       
+    }
+}
