@@ -8,12 +8,34 @@
     ".NETCoreApp,Version=v9.0": {
       "VasosInteligentes/1.0.0": {
         "dependencies": {
+          "AspNetCore.Identity.MongoDbCore": "7.0.0",
+          "MailKit": "4.15.1",
           "Microsoft.EntityFrameworkCore.InMemory": "9.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "9.0.12",
           "MongoDB.Driver": "3.6.0"
         },
         "runtime": {
           "VasosInteligentes.dll": {}
+        }
+      },
+      "AspNetCore.Identity.MongoDbCore/7.0.0": {
+        "dependencies": {
+          "MongoDB.Driver": "3.6.0",
+          "MongoDbGenericRepository": "2.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/AspNetCore.Identity.MongoDbCore.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.0.0"
+          }
+        }
+      },
+      "BouncyCastle.Cryptography/2.6.2": {
+        "runtime": {
+          "lib/net6.0/BouncyCastle.Cryptography.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.6.2.46322"
+          }
         }
       },
       "DnsClient/1.6.1": {
@@ -561,6 +583,17 @@
         "resources": {
           "lib/net6.0/zh-Hant/Humanizer.resources.dll": {
             "locale": "zh-Hant"
+          }
+        }
+      },
+      "MailKit/4.15.1": {
+        "dependencies": {
+          "MimeKit": "4.15.1"
+        },
+        "runtime": {
+          "lib/net8.0/MailKit.dll": {
+            "assemblyVersion": "4.15.0.0",
+            "fileVersion": "4.15.1.0"
           }
         }
       },
@@ -1579,6 +1612,17 @@
           }
         }
       },
+      "MimeKit/4.15.1": {
+        "dependencies": {
+          "BouncyCastle.Cryptography": "2.6.2"
+        },
+        "runtime": {
+          "lib/net8.0/MimeKit.dll": {
+            "assemblyVersion": "4.15.0.0",
+            "fileVersion": "4.15.1.0"
+          }
+        }
+      },
       "MongoDB.Bson/3.6.0": {
         "runtime": {
           "lib/net6.0/MongoDB.Bson.dll": {
@@ -1600,6 +1644,17 @@
           "lib/net6.0/MongoDB.Driver.dll": {
             "assemblyVersion": "3.6.0.0",
             "fileVersion": "3.6.0.0"
+          }
+        }
+      },
+      "MongoDbGenericRepository/2.0.0": {
+        "dependencies": {
+          "MongoDB.Driver": "3.6.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/MongoDbGenericRepository.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
           }
         }
       },
@@ -1882,6 +1937,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AspNetCore.Identity.MongoDbCore/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-71WasZQtxkxqUSsDRqlyAHOvAroFSicKnoMGhuXxrnXSNhPQzaBAqvzi9HoQA2rmJUSfEAogY5WxDDio6Ne9NQ==",
+      "path": "aspnetcore.identity.mongodbcore/7.0.0",
+      "hashPath": "aspnetcore.identity.mongodbcore.7.0.0.nupkg.sha512"
+    },
+    "BouncyCastle.Cryptography/2.6.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7oWOcvnntmMKNzDLsdxAYqApt+AjpRpP2CShjMfIa3umZ42UQMvH0tl1qAliYPNYO6vTdcGMqnRrCPmsfzTI1w==",
+      "path": "bouncycastle.cryptography/2.6.2",
+      "hashPath": "bouncycastle.cryptography.2.6.2.nupkg.sha512"
     },
     "DnsClient/1.6.1": {
       "type": "package",
@@ -2240,6 +2309,13 @@
       "path": "humanizer.core.zh-hant/2.14.1",
       "hashPath": "humanizer.core.zh-hant.2.14.1.nupkg.sha512"
     },
+    "MailKit/4.15.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4mLbqTbH3ctd0NlukHjVQbU3ZnNDuCtB6ttNZDLPZLWMA2Dr31rh/eCSTqOwDojUX8zfDOVaxstMgJTE9PwZNA==",
+      "path": "mailkit/4.15.1",
+      "hashPath": "mailkit.4.15.1.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.Razor.Language/6.0.24": {
       "type": "package",
       "serviceable": true,
@@ -2541,6 +2617,13 @@
       "path": "microsoft.visualstudio.web.codegenerators.mvc/9.0.12",
       "hashPath": "microsoft.visualstudio.web.codegenerators.mvc.9.0.12.nupkg.sha512"
     },
+    "MimeKit/4.15.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cxCcQhD0zhboFoG136jJuJtQjNRDJ+BxBm3f2vWn+53bff/CRo+K1mAkWjsW4Wuyy5O22F40MdMG2nRzQu1cJw==",
+      "path": "mimekit/4.15.1",
+      "hashPath": "mimekit.4.15.1.nupkg.sha512"
+    },
     "MongoDB.Bson/3.6.0": {
       "type": "package",
       "serviceable": true,
@@ -2554,6 +2637,13 @@
       "sha512": "sha512-MzEVPUo9FJ3A2fvXdKr0vGllbiAGvpyLa8bU6bucKSKndraSjfgGDn/J+ek/SrUK4A3yozYZBkwJZm8qe36VmQ==",
       "path": "mongodb.driver/3.6.0",
       "hashPath": "mongodb.driver.3.6.0.nupkg.sha512"
+    },
+    "MongoDbGenericRepository/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LtS89Ff5MPtmMs0fkFhboddo1mwwrnix+2NxFJjOtJkHhxYeun6bNnOcYRorAXlA2Fmymrxedjl4hadOoQYNvg==",
+      "path": "mongodbgenericrepository/2.0.0",
+      "hashPath": "mongodbgenericrepository.2.0.0.nupkg.sha512"
     },
     "Mono.TextTemplating/3.0.0": {
       "type": "package",

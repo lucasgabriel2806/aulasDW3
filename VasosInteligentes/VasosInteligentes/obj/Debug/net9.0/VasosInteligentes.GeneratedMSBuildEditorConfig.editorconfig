@@ -30,6 +30,30 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
+[C:/fatec/aulas-cursos/aulasDW3/VasosInteligentes/VasosInteligentes/Accounts/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QWNjb3VudHNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/fatec/aulas-cursos/aulasDW3/VasosInteligentes/VasosInteligentes/Views/Accounts/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcRm9yZ290UGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/fatec/aulas-cursos/aulasDW3/VasosInteligentes/VasosInteligentes/Views/Accounts/ForgotPasswordConfirm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcRm9yZ290UGFzc3dvcmRDb25maXJtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/fatec/aulas-cursos/aulasDW3/VasosInteligentes/VasosInteligentes/Views/Accounts/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/fatec/aulas-cursos/aulasDW3/VasosInteligentes/VasosInteligentes/Views/Accounts/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcUmVzZXRQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/fatec/aulas-cursos/aulasDW3/VasosInteligentes/VasosInteligentes/Views/Accounts/ResetPasswordConfirm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcUmVzZXRQYXNzd29yZENvbmZpcm0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/fatec/aulas-cursos/aulasDW3/VasosInteligentes/VasosInteligentes/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -62,6 +86,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/fatec/aulas-cursos/aulasDW3/VasosInteligentes/VasosInteligentes/Views/Shared/_loginAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9sb2dpbkFkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/fatec/aulas-cursos/aulasDW3/VasosInteligentes/VasosInteligentes/Views/Shared/_partialUsuario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9wYXJ0aWFsVXN1YXJpby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/fatec/aulas-cursos/aulasDW3/VasosInteligentes/VasosInteligentes/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -84,6 +116,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/fatec/aulas-cursos/aulasDW3/VasosInteligentes/VasosInteligentes/Views/Vasos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmFzb3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/fatec/aulas-cursos/aulasDW3/VasosInteligentes/VasosInteligentes/Views/Vasos/MeusVasos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmFzb3NcTWV1c1Zhc29zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/fatec/aulas-cursos/aulasDW3/VasosInteligentes/VasosInteligentes/Views/_ViewImports.cshtml]

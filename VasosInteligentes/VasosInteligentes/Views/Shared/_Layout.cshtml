@@ -13,9 +13,9 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">VasosInteligentes</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Vasos Inteligentes</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -23,12 +23,24 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Plantas" asp-action="Create">Plantas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Vasos" asp-action="Create">Vasos</a>
-                        </li>
+                        <partial name="_loginAdmin.cshtml"/>
+                        <partial name="_partialUsuario.cshtml" />
+                        @*verificando se o usuário está logado*@
+                        @if(User?.Identity?.IsAuthenticated ?? false)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" 
+                                asp-controller="Accounts" asp-action="Logout">Sair</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" 
+                                asp-controller="Accounts" asp-action="Login">Entrar</a>
+                            </li>
+                        }
+
                     </ul>
                 </div>
             </div>
@@ -42,7 +54,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2026 - Vasos Inteligentes
+            &copy; 2026 - Vasos Inteligentes 
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

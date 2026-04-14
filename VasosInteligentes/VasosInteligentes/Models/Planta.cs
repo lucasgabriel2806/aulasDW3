@@ -15,6 +15,5 @@ namespace VasosInteligentes.Models
         public double UmidadeIdealMax { get; set; }
         [Display(Name = "Luminosidade")]
         public double LuminosidadeIdeal { get; set; }
-
     }
 }

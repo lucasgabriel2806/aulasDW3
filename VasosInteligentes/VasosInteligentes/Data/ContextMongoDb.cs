@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using System.Security.Authentication;
-using VasosInteligentes.Data;
 using VasosInteligentes.Models;
 
-namespace VasosInteligentes.data
+namespace VasosInteligentes.Data
 {
     public class ContextMongoDb
     {
@@ -15,7 +13,7 @@ namespace VasosInteligentes.data
             var mongoSettings = settings.Value;
             var mongoUrl = new MongoUrl(mongoSettings.ConnectionString);
             var clientSettings = MongoClientSettings.FromUrl(mongoUrl);
-            if(mongoSettings.IsSsl)
+            if (mongoSettings.IsSsl)
             {
                 clientSettings.SslSettings = new SslSettings
                 {
@@ -24,6 +22,7 @@ namespace VasosInteligentes.data
             }
             var client = new MongoClient(clientSettings);
             _database = client.GetDatabase(mongoSettings.Database);
+
         }
         public IMongoCollection<Vaso> Vaso
         {
@@ -34,6 +33,4 @@ namespace VasosInteligentes.data
             get { return _database.GetCollection<Planta>("Planta"); }
         }
     }
-
-
 }

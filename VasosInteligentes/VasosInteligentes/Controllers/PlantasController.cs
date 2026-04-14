@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
-using VasosInteligentes.data;
 using VasosInteligentes.Data;
 using VasosInteligentes.Models;
 
@@ -20,7 +21,7 @@ namespace VasosInteligentes.Controllers
         {
             _context = context;
         }
-
+        [Authorize(Roles="Administrador")]
         // GET: Plantas
         public async Task<IActionResult> Index()
         {
@@ -137,10 +138,10 @@ namespace VasosInteligentes.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var result = await _context.Planta.DeleteOneAsync(p => p.Id == id);
-            if (result == null)
+            var result = await _context.Planta.DeleteOneAsync(m => m.Id == id);
+            if(result == null)
             {
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
             return RedirectToAction(nameof(Index));
         }
