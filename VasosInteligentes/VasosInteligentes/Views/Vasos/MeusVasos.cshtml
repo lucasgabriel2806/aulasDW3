@@ -21,6 +21,18 @@
             <th>
                 @Html.DisplayNameFor(model => model.Localizacao)
             </th>
+            <th>
+                Temperatura
+            </th>
+            <th>
+                Umidade
+            </th>
+            <th>
+                Luminosidade
+            </th>
+            <th>
+                Data da Leitura
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -36,6 +48,20 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Localizacao)
+                </td>
+                <td>
+                    @(item.UltimaLeitura?.Temperatura.ToString() ?? "Sem leitura")
+                </td>
+
+                <td>
+                    @(item.UltimaLeitura?.Umidade.ToString() ?? "Sem leitura")
+                </td>
+
+                <td>
+                    @(item.UltimaLeitura?.Luminosidade.ToString() ?? "Sem leitura")
+                </td>
+                <td>
+                    @item.UltimaLeitura?.DataLeitura.ToLocalTime().ToString("HH:mm:ss")
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

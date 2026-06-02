@@ -1,0 +1,24 @@
+﻿@using ExercicioClinica.Models;
+
+<a href="/Clinica/Nova">Nova Clínica</a>
+
+<table>
+    <tr>
+        <th>Nome</th>
+        <th>Alarme</th>
+        <th>Ação</th>
+    </tr>
+
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.Nome</td>
+            <td>@c.Alarme</td>
+            <td>
+                <a href="/Clinica/Toggle/@c.Id">
+                    @(c.Alarme == "Desligado" ? "Ligar" : "Desligar")
+                </a>
+            </td>
+        </tr>
+    }
+</table>

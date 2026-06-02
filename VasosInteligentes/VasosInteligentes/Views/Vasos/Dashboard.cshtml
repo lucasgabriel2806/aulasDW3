@@ -1,0 +1,120 @@
+﻿@using System.Text.Json
+
+@{
+    ViewData["Title"] = "Dashboard";
+
+    // Converte os dados vindos do Controller
+    // para JSON, permitindo que o JavaScript consiga utilizá-los
+
+    var nomesVasosJson =
+        JsonSerializer.Serialize(ViewBag.NomesVasos);
+
+    var mediaManhaJson =
+        JsonSerializer.Serialize(ViewBag.MediaManha);
+
+    var mediaTardeJson =
+        JsonSerializer.Serialize(ViewBag.MediaTarde);
+
+    var mediaNoiteJson =
+        JsonSerializer.Serialize(ViewBag.MediaNoite);
+}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">
+        Dashboard de Luminosidade
+    </h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <!-- Local onde o gráfico será renderizado -->
+            <div id="graficoDashboard"></div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Biblioteca ApexCharts -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script>
+
+    // Recupera os dados enviados do C#
+    // e transforma em variáveis JavaScript
+
+    const nomesVasos =
+    @Html.Raw(nomesVasosJson);
+
+    const mediaManha =
+    @Html.Raw(mediaManhaJson);
+
+    const mediaTarde =
+    @Html.Raw(mediaTardeJson);
+
+    const mediaNoite =
+    @Html.Raw(mediaNoiteJson);
+
+    // Configuração do gráfico
+    var options = {
+
+    chart: {
+    type: 'bar', // Define gráfico de barras
+    height: 400, // Altura do gráfico
+    stacked: true // Habilita barras empilhadas
+    },
+
+    // Define as séries do gráfico
+    // Cada série representa um período do dia
+    series: [
+    {
+    name: 'Manhã',
+    data: mediaManha
+    },
+    {
+    name: 'Tarde',
+    data: mediaTarde
+    },
+    {
+    name: 'Noite',
+    data: mediaNoite
+    }
+    ],
+
+    // Define os nomes exibidos abaixo das barras
+    xaxis: {
+    categories: nomesVasos
+    },
+
+    // Configuração do formato das barras
+    plotOptions: {
+    bar: {
+    horizontal: false
+    }
+    },
+
+    // Configuração do eixo Y
+    yaxis: {
+    title: {
+    text: 'Média da Luminosidade'
+    }
+    },
+
+    // Exibe a legenda do gráfico
+    legend: {
+    position: 'top'
+    }
+    };
+
+    // Cria o gráfico dentro da div graficoDashboard
+    var chart =
+    new ApexCharts(
+    document.querySelector("#graficoDashboard"),
+    options
+    );
+
+    // Renderiza o gráfico na tela
+    chart.render();
+
+</script>

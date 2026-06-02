@@ -23,6 +23,23 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        @* Exibe o item Dashboard apenas
+                        para usuários do tipo Usuario *@
+                        @if (User.IsInRole("Usuario"))
+                        {
+                            <li class="nav-item">
+
+                                @* Link para a action Dashboard
+                                do controller Vasos *@
+                                <a class="nav-link"
+                                   asp-controller="Vasos"
+                                   asp-action="Dashboard">
+
+                                    Dashboard
+
+                                </a>
+                            </li>
+                        }
                         <partial name="_loginAdmin.cshtml"/>
                         <partial name="_partialUsuario.cshtml" />
                         @*verificando se o usuário está logado*@
@@ -39,7 +56,7 @@
                                 <a class="nav-link text-dark" asp-area="" 
                                 asp-controller="Accounts" asp-action="Login">Entrar</a>
                             </li>
-                        }
+                        }                        
 
                     </ul>
                 </div>

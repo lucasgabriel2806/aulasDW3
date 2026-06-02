@@ -32,5 +32,9 @@ namespace VasosInteligentes.Data
         {
             get { return _database.GetCollection<Planta>("Planta"); }
         }
+        public IMongoCollection<LeituraSensor> LeituraSensor
+        {
+            get { return _database.GetCollection<LeituraSensor>("LeituraSensor"); }
+        }
     }
 }

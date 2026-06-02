@@ -51,16 +51,16 @@ namespace VasosInteligentes.Seeds
                 else { return; }
             }//fim do if
             //criar um usuário comum
-            if (await userManager.FindByEmailAsync("teste@usuario.com") == null)
+            if (await userManager.FindByEmailAsync("vania@fgp.com.br") == null)
             {
                 //se não encontrou será inserido
                 var user = new ApplicationUser
                 {
-                    UserName = "teste@usuario.com",
-                    Email = "teste@usuario.com",
+                    UserName = "vania@fgp.com.br",
+                    Email = "vania@fgp.com.br",
                     EmailConfirmed = true
                 };
-                var resultUser = await userManager.CreateAsync(user, "Teste@123");
+                var resultUser = await userManager.CreateAsync(user, "Vania@123");
                 if (resultUser.Succeeded)
                 {
                     Console.WriteLine($"SEED: Usuário Comum foi criado");

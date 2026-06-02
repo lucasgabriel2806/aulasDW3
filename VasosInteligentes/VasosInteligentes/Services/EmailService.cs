@@ -38,6 +38,7 @@ namespace VasosInteligentes.Services
                 await smtp.SendAsync(email);
 
                 await smtp.DisconnectAsync(true);
+                Console.WriteLine("Enviei o e-mail");
             }
             catch (Exception ex)
             {
